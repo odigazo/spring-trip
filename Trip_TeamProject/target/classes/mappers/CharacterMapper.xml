@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="myCharacter">
+   
+   <insert id="insertCharacter" parameterType="CharacterInfo">
+      INSERT INTO characterInfo(characterHP, characterAD, characterAP, characterADDefence, characterAPDefence,
+      							characterSpeed, characterHitRate, characterAvoidanceRate, characterCritical, characterAdditionalDmg) 
+			VALUES(#{characterHP}, #{characterAD}, #{characterAP}, #{characterADDefence}, #{characterAPDefence}, #{characterSpeed}, 
+				   #{characterHitRate}, #{characterAvoidanceRate}, #{characterCritical}, #{characterAdditionalDmg})
+   </insert>
+
+	<select id="getCharacterByCharacterNum" parameterType="Integer" resultType="CharacterInfo">
+      select characterNum, characterHP, characterAD, characterAP, characterADDefence, characterAPDefence,
+      		 characterSpeed, characterHitRate, characterAvoidanceRate, characterCritical, characterAdditionalDmg 
+      from characterInfo where characterNum=#{userCharacterNum}
+   </select>
+   
+   <select id="searchMax" resultType="int">
+   	  SELECT MAX(characterNum) FROM characterInfo;
+   </select>
+   
+   <select id="searchCharacter" parameterType="CharacterInfo" resultType="CharacterInfo">
+    select characterHP, characterAD, characterAP, characterADDefence, characterAPDefence, characterSpeed, characterHitRate, characterAvoidanceRate, characterCritical, characterAdditionalDmg
+    from characterInfo 
+    where characterNum = #{characterNum}  		 
+   </select>
+   
+   <update id="updatecharacter"	parameterType="CharacterInfo">
+    <![CDATA[
+    UPDATE characterInfo 
+    SET characterAD = #{characterAD}, characterAP = #{characterAP}, characterADDefence = #{characterADDefence}, 
+    characterAPDefence = #{characterAPDefence}, characterHitRate = #{characterHitRate}, characterAvoidanceRate = #{characterAvoidanceRate}, 
+    characterCritical = #{characterCritical}, characterAdditionalDmg = #{characterAdditionalDmg}    
+    WHERE characterNum = #{characterNum}
+    ]]>
+   </update>
+
+</mapper>
