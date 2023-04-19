@@ -47,7 +47,7 @@ public class LoginController {
 		user.setUserEmail(email);
 		user.setUserPW(password);
 		
-		//
+		//////
 		
 	    
 	    ObjectMapper mapper = new ObjectMapper();
