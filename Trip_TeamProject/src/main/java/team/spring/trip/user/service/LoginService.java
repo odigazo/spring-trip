@@ -4,11 +4,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import team.spring.trip.user.dao.UserDao;
 import team.spring.trip.user.vo.User;
 
 @Service
+@Transactional
 public class LoginService {
 	
 	@Autowired
@@ -55,6 +57,11 @@ public class LoginService {
 	public User getUser(String email) {
 		User user = dao.emailCheck(email);
 		return user;
+	}
+
+	public User loginCheck(User user) {
+		User userinfo = dao.loginCheck(user);
+		return userinfo;
 	}
 	
 	
