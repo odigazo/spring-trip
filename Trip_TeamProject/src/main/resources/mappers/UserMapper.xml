@@ -11,20 +11,24 @@
    </select>
 
    <select id="checkEmail" parameterType="String" resultType="User">
-      select * from users where userEmail=#{userEmail}
+      select * from user where userEmail=#{userEmail}
+   </select>
+   
+   <select id="checkNickname" parameterType="String" resultType="User">
+      select * from user where userNickname=#{userNickname}
    </select>
    
    <select id="checkIsOut" parameterType="String" resultType="User">
-      select * from users where userEmail=#{userEmail} AND isOut='Y'
+      select * from user where userEmail=#{userEmail} AND isOut='Y'
    </select>
    
    <insert id="insertUser" parameterType="User">
-      INSERT INTO users(userEmail,userName,userProfile) VALUES(#{userEmail},#{userName},#{userProfile})
+      INSERT INTO user(userEmail,userNickname,userPW,userAddr,userAge) VALUES(#{userEmail},#{userNickname},#{userPW},#{userAddr},#{userAge})
    </insert>
    
    
    <update id="deleteUser" parameterType="HashMap">
-   	  update users set isOut='Y',outDate=#{outDate},userMBTI=NULL,userCharacter=1,
+   	  update user set isOut='Y',outDate=#{outDate},userMBTI=NULL,userCharacter=1,
    	  userI=0,userE=0,userS=0,userN=0,userT=0,userF=0,userP=0,userJ=0,
    	  userWin=0,userDefeat=0,userPoint=0
    	  where userEmail=#{userEmail}
