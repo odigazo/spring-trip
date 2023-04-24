@@ -79,6 +79,13 @@ public class UserDaoImpl implements UserDao {
 		return userinfo;
 	}
 
+	@Override
+	public User nicknameCheck(String userNickname) {
+		User user = session.selectOne("myUser.checkNickname",userNickname);
+		
+		return user;
+	}
+
 	
 	
 	

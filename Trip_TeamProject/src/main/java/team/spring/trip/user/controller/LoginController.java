@@ -31,8 +31,6 @@ public class LoginController {
 	private LoginService loginservice;
 	
 	
-	
-	
 	Logger log = LogManager.getLogger("case3");
 	
 	

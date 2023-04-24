@@ -18,6 +18,8 @@ public interface UserDao {
 
 	User loginCheck(User user);
 
+	User nicknameCheck(String userNickname);
+
 	
 	
 }
