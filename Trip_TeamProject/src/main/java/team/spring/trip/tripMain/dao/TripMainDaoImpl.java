@@ -1,0 +1,39 @@
+package team.spring.trip.tripMain.dao;
+
+import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import team.spring.trip.tripMain.vo.TripPlaceDetail;
+import team.spring.trip.tripMain.vo.TripPlaceInfo;
+
+@Repository
+public class TripMainDaoImpl implements TripMainDao{
+
+	Logger log = LogManager.getLogger("case3");
+	
+	@Autowired
+	private SqlSession session;
+
+	@Override
+	public List<TripPlaceInfo> searchAllPlaces() {
+		
+		List<TripPlaceInfo> list = session.selectList("tripMain.searchAllPlaces");
+		
+		return list;
+	}
+
+	@Override
+	public TripPlaceDetail searchDetail(String placeName) {
+		
+		TripPlaceDetail detail = session.selectOne("tripMain.searchDetail", placeName);
+		
+		return detail;
+	}
+	
+	
+}
