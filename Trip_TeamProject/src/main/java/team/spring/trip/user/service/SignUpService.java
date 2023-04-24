@@ -11,19 +11,41 @@ import team.spring.trip.user.vo.User;
 
 @Service
 @Transactional
-public class LoginService {
+public class SignUpService {
 	
 	@Autowired
 	private UserDao dao;
 	
 	Logger log = LogManager.getLogger("case3");
 
+	public int userRegistration(User user) {
+		int count = dao.insertUser(user);
+		if(count==1) {
+			log.debug("유저 등록 성공");
+		}else {
+			log.debug("유저 등록 실패");
+		}
+		return count;
+	}
 
 	public boolean checkEmail(String userEmail) {
 		
 		boolean canRegister = false;
 		
 		User user = dao.emailCheck(userEmail);
+		
+		if(user==null) {
+			canRegister=true;
+		}
+		
+		return canRegister;
+	}
+	
+	public boolean checkNickname(String userNickname) {
+		
+		boolean canRegister = false;
+		
+		User user = dao.nicknameCheck(userNickname);
 		
 		if(user==null) {
 			canRegister=true;
@@ -50,11 +72,5 @@ public class LoginService {
 		return user;
 	}
 
-	public User loginCheck(User user) {
-		User userinfo = dao.loginCheck(user);
-		return userinfo;
-	}
-	
-	
 	
 }

@@ -16,6 +16,10 @@ public interface UserDao {
 
 	User isOutCheck(String userEmail);
 
+	User loginCheck(User user);
+
+	User nicknameCheck(String userNickname);
+
 	
 	
 }

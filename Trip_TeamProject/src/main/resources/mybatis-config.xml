@@ -22,11 +22,7 @@
 	 	 
 		<typeAlias type="team.spring.trip.tripMain.vo.TripPlaceInfo" alias="TripPlaceInfo"/>
 		<typeAlias type="team.spring.trip.tripMain.vo.TripPlaceDetail" alias="TripPlaceDetail"/>
-	 	<!-- <typeAlias type="team.spring.springmbti.user.vo.User" alias="Survey"/> 
-	 	<typeAlias type="team.spring.springmbti.user.vo.User" alias="User"/>
-	 	<typeAlias type="team.spring.springmbti.character.vo.CharacterInfo" alias="CharacterInfo"/>
-	 	<typeAlias type="team.spring.springmbti.battle.vo.BattleLog" alias="battleLog"/>
-	 	<typeAlias type="team.spring.springmbti.mbti.vo.MBTIResult" alias="MBTIResult"/> -->
+		<typeAlias type="team.spring.trip.user.vo.User" alias="User"/>
 	 	
 
 	 </typeAliases>

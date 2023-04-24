@@ -33,12 +33,8 @@
          <list>
 			<value>classpath:mappers/TripMainMapper.xml</value>
             
-            <!-- <value>classpath:mappers/SurveyMapper.xml</value> -->
-			<!-- <value>classpath:mappers/SurveyMapper.xml</value>
             <value>classpath:mappers/UserMapper.xml</value>
-            <value>classpath:mappers/CharacterMapper.xml</value>
-            <value>classpath:mappers/BattleLogMapper.xml</value>
-            <value>classpath:mappers/MBTIMapper.xml</value> -->
+			
          </list>
       </property>
    </bean>

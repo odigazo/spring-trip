@@ -31,8 +31,6 @@ public class LoginController {
 	private LoginService loginservice;
 	
 	
-	
-	
 	Logger log = LogManager.getLogger("case3");
 	
 	
@@ -47,13 +45,21 @@ public class LoginController {
 		user.setUserEmail(email);
 		user.setUserPW(password);
 		
-		//
+		User usercheck = loginservice.loginCheck(user);
+		Map<String,String> map = new HashMap<String, String>();
 		
 	    
-	    ObjectMapper mapper = new ObjectMapper();
-	    String userInfo = mapper.writeValueAsString(user);
-	    Map<String,String> map = new HashMap<String, String>();
-	    map.put("userInfo",userInfo);
+	    if(usercheck==null) {
+	    	log.debug("등록된 유저 정보 없음");
+	    	map.put("userInfo",null);
+	    }else {
+	    	log.debug(usercheck.toString());
+	    	ObjectMapper mapper = new ObjectMapper();
+		    String userInfo = mapper.writeValueAsString(usercheck);
+		    
+		    map.put("userInfo",userInfo);
+	    }
+	    
 	    
 	    
 		return map;
