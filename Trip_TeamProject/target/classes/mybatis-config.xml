@@ -20,7 +20,8 @@
 	 <typeAliases>
 
 	 	 
-
+		<typeAlias type="team.spring.trip.tripMain.vo.TripPlaceInfo" alias="TripPlaceInfo"/>
+		<typeAlias type="team.spring.trip.tripMain.vo.TripPlaceDetail" alias="TripPlaceDetail"/>
 	 	<!-- <typeAlias type="team.spring.springmbti.user.vo.User" alias="Survey"/> 
 	 	<typeAlias type="team.spring.springmbti.user.vo.User" alias="User"/>
 	 	<typeAlias type="team.spring.springmbti.character.vo.CharacterInfo" alias="CharacterInfo"/>
