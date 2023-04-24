@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="comment">
+
+	<!-- 댓글쓰기 -->
+	<insert id="insertComment" parameterType="comment">
+		INSERT INTO commentLog (commentNum, courseNum, userNum, contents, contentsDate)
+		VALUES (#{commentNum}, #{courseNum}, #{userNum}, #{contents}, NOW())
+   </insert>
+
+	<!-- 댓글삭제 -->
+	<update id="deleteComment" parameterType="int">
+		UPDATE commentLog 
+		SET isDelete = 'Y', deleteDate = NOW(), 
+		WHERE commentNum = #{commentNum}
+	</update>
+			
+	<!-- 댓글수정 -->
+	<update id="updateComment" parameterType="comment">
+		UPDATE commentLog
+    	SET courseNum = #{courseNum}, userNum = #{userNum}, contents = #{contents}
+		WHERE commentNum = #{commentNum}
+	</update>
+	
+	<!-- 댓글리스트 -->
+	<select id="commentList" parameterType="comment">
+		SELECT commentNum, courseNum, userNum, contents, contentsDate
+  		FROM commentLog
+	</select>
+	
+	
+</mapper>
