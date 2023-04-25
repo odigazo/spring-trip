@@ -4,10 +4,9 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
  <mapper namespace="tripMain">
  
- <select id="searchAllPlaces" resultType="TripPlaceInfo">
+  <select id="searchAllPlaces" resultType="TripPlaceInfo">
  	SELECT placeName, thumnailUrl from tripPlace
- 	WHERE spring = 'Y'
- 	ORDER BY placeName DESC
+ 	ORDER BY placeName
  </select>
  
  <select id="searchDetail" parameterType="String" resultType="TripPlaceDetail">
@@ -16,4 +15,17 @@
  	FROM tripPlace
  	WHERE placeName = #{placeName}
  </select>
+
+ <select id="searchKeyword" parameterType="String" resultType="TripPlaceInfo">
+ 	SELECT placeName, thumnailUrl from tripPlace
+ 	WHERE placeAddress LIKE CONCAT('%',#{keyword},'%') 
+ 	ORDER BY placeName DESC
+ </select>
+ 
+ <select id="searchCategory" parameterType="String" resultType="TripPlaceInfo">
+  	SELECT placeName, thumnailUrl from tripPlace
+  	WHERE ${season} = 'Y'
+ 	ORDER BY placeName
+ </select>
+ 
  </mapper>

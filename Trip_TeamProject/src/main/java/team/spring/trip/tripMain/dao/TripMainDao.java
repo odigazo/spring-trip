@@ -10,6 +10,10 @@ public interface TripMainDao {
 	List<TripPlaceInfo> searchAllPlaces();
 
 	TripPlaceDetail searchDetail(String placeName);
+
+	List<TripPlaceInfo> searchKeyword(String keyword);
+
+	List<TripPlaceInfo> searchCategory(String season);
 	
 	
 

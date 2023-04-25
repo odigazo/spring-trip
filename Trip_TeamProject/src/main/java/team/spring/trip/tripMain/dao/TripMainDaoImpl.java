@@ -34,6 +34,22 @@ public class TripMainDaoImpl implements TripMainDao{
 		
 		return detail;
 	}
+
+	@Override
+	public List<TripPlaceInfo> searchKeyword(String keyword) {
+		
+		List<TripPlaceInfo> list = session.selectList("tripMain.searchKeyword", keyword);
+		
+		return list;
+	}
+
+	@Override
+	public List<TripPlaceInfo> searchCategory(String season) {
+		
+		List<TripPlaceInfo> list = session.selectList("tripMain.searchCategory", season);	
+		
+		return list;
+	}
 	
 	
 }
