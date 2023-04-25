@@ -31,19 +31,45 @@ public class TripMainController {
 		
 		List<TripPlaceInfo> list = service.searchAllPlaces();
 		
+		System.out.println(list.toString());
+		
 		String places = gson.toJson(list);
 		
 		return places;
 	}
 	
-	@GetMapping(value="/detail")
+	@GetMapping(value="detail")
 	public String searchDetail(String placeName) {
 		
 		TripPlaceDetail detail = service.searchDetail(placeName);
 		
 		String tripDetail = gson.toJson(detail);
 		
+		System.out.println(tripDetail);
+		
 		return tripDetail;
+	}
+	
+	@GetMapping(value="keyword")
+	public String searchKeyword(String keyword) {
+
+		List<TripPlaceInfo> list = service.searchKeyword(keyword);
+		
+		String places = gson.toJson(list);
+		
+		return places;
+	}
+	
+	@GetMapping(value="category")
+	public String searchCategory(String season) {
+		
+		List<TripPlaceInfo> list = service.searchCategory(season);
+		
+		String places = gson.toJson(list);
+		
+		System.out.println(places);
+		
+		return places;
 	}
 	
 	

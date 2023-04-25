@@ -33,6 +33,20 @@ public class TripMainService {
 		
 		return detail;
 	}
+
+	public List<TripPlaceInfo> searchKeyword(String keyword) {
+		
+		List<TripPlaceInfo> list = dao.searchKeyword(keyword);
+		
+		return list;
+	}
+
+	public List<TripPlaceInfo> searchCategory(String season) {
+		
+		List<TripPlaceInfo> list = dao.searchCategory(season);
+		
+		return list;
+	}
 	
 
 
