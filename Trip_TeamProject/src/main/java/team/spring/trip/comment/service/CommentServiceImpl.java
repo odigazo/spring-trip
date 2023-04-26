@@ -7,12 +7,14 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import team.spring.trip.comment.dao.CommentDao;
 import team.spring.trip.comment.vo.Comment;
 
 
 @Service
+@Transactional
 public class CommentServiceImpl implements CommentService {
 
 	@Autowired
@@ -22,15 +24,10 @@ public class CommentServiceImpl implements CommentService {
 	
 	//댓쓰기
 	@Override
-	public Comment createComment(Comment comment) {
+	public int createComment(Comment comment) {
 		log.debug("댓쓰기 서비스");
 		int result = commentDao.insertComment(comment);
-		if (result != 0) {
-			return null;
-			//return commentDao.(comment);
-		} else {
-		 return null;
-		}
+		return result;
 	}
 
 	//댓 수정

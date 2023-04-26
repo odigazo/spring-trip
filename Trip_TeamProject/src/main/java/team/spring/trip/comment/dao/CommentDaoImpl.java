@@ -30,21 +30,23 @@ public class CommentDaoImpl implements CommentDao {
 	@Override
 	public int updateCommentDao(Comment comment) {
 		log.debug("댓글수정 dao");
-		return session.update(".", comment);
+		int count = session.update("comment.updateComment", comment);
+		log.debug(count);
+		return count;
 	}
 
 	//댓삭제
 	@Override
 	public int deleteComment(Comment comment) {
 		log.debug("댓삭제 dao");
-		return session.update(".", comment);
+		return session.update("comment.deleteComment", comment);
 	}
 
 	//댓글리스트
 	@Override
 	public List<Comment> getAllComment() {
 		log.debug("댓글리스트 dao");
-		return session.selectList(".");
+		return session.selectList("comment.commentList");
 	}
 
 	

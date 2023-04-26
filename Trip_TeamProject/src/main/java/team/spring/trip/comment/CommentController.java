@@ -27,36 +27,45 @@ public class CommentController {
 	
 	//댓글쓰기
 	@PostMapping(value = "/insertComment")
-	public Comment insertComment(@ModelAttribute Comment comment, Model model) {
-		log.debug("");
-		Comment result = commentService.createComment(comment);
-		return result;
+	public List<Comment> insertComment(@ModelAttribute Comment comment) {
+		log.debug("쓰기 controller");
+		log.debug(comment.getUserNum());
+		comment.setCourseNum(1);
+		int result = commentService.createComment(comment);
+		List<Comment> list = commentService.allComment();
+		return list;
 	}
 
 	
 	//댓글 수정
 	@PutMapping(value ="/updateComment")
-	public int updateComment(Comment comment, Model model) {
+	public List<Comment> updateComment(@ModelAttribute Comment comment) {
 		log.debug("update컨트롤러");
-		
+		log.debug(comment.getContents());
+		log.debug(comment.getCommentNum());
 		int result = commentService.editComment(comment);
-		return result;
+		if(result==1) {
+			List<Comment> list = commentService.allComment();
+			return list;
+		}
+		return null;
 	}
 	
 	
 	//댓글삭제
 	@PutMapping(value = "/deleteComment")
-	public int deleteComment(Comment comment, Model model) {
+	public int deleteComment(@ModelAttribute Comment comment) {
+		log.debug("댓글 삭제ct");
+		log.debug(comment.getUserNum());
 		int result = commentService.deleteCommentSv(comment);
 		return result;
 	}
 	
 	//댓글리스트
 	@GetMapping(value = "/commentList")
-	public String commentList(Model model) {
-		List<Comment> comment = commentService.allComment();
-		model.addAttribute("comment", comment);
-		return null;
+	public List<Comment> commentList() {
+		List<Comment> list = commentService.allComment();
+		return list;
 	}
 	
 	

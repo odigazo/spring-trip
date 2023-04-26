@@ -7,9 +7,9 @@
 <mapper namespace="comment">
 
 	<!-- 댓글쓰기 -->
-	<insert id="insertComment" parameterType="comment">
-		INSERT INTO commentLog (commentNum, courseNum, userNum, contents, contentsDate)
-		VALUES (#{commentNum}, #{courseNum}, #{userNum}, #{contents}, NOW())
+	<insert id="insertComment" parameterType="Comment">
+		INSERT INTO commentLog (courseNum, userNum, contents)
+		VALUES (#{courseNum}, #{userNum}, #{contents})
    </insert>
 
 	<!-- 댓글삭제 -->
@@ -20,15 +20,15 @@
 	</update>
 			
 	<!-- 댓글수정 -->
-	<update id="updateComment" parameterType="comment">
+	<update id="updateComment" parameterType="Comment">
 		UPDATE commentLog
-    	SET courseNum = #{courseNum}, userNum = #{userNum}, contents = #{contents}
+    	SET contents = #{contents}
 		WHERE commentNum = #{commentNum}
 	</update>
 	
 	<!-- 댓글리스트 -->
-	<select id="commentList" parameterType="comment">
-		SELECT commentNum, courseNum, userNum, contents, contentsDate
+	<select id="commentList" resultType="Comment">
+		SELECT *
   		FROM commentLog
 	</select>
 	

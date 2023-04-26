@@ -10,7 +10,7 @@ import team.spring.trip.comment.vo.Comment;
 public interface CommentService {
 
 	//댓쓰기
-	Comment createComment(Comment comment);
+	int createComment(Comment comment);
 
 	//댓수정
 	int editComment(Comment comment);
