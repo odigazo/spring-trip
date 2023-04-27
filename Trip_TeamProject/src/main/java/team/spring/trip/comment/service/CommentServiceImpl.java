@@ -41,11 +41,22 @@ public class CommentServiceImpl implements CommentService {
 
 	//댓삭제
 	@Override
-	public int deleteCommentSv(Comment comment) {
+	public List<Comment> deleteCommentSv(Comment comment) {
 		log.debug("삭제 서비스");
 		
-		int result = commentDao.deleteComment(comment);
-		return result;
+		int result = 0;
+		List<Comment> list = null;
+		try {
+			result = commentDao.deleteComment(comment);
+			if (result == 1) {
+				list = commentDao.getAllComment();
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 
 	//댓글리스트

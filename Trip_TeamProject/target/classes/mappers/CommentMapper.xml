@@ -15,7 +15,7 @@
 	<!-- 댓글삭제 -->
 	<update id="deleteComment" parameterType="int">
 		UPDATE commentLog 
-		SET isDelete = 'Y', deleteDate = NOW(), 
+		SET isDelete = 'Y', deleteDate = NOW() 
 		WHERE commentNum = #{commentNum}
 	</update>
 			
@@ -30,6 +30,7 @@
 	<select id="commentList" resultType="Comment">
 		SELECT *
   		FROM commentLog
+  		WHERE isDelete != 'Y'
 	</select>
 	
 	

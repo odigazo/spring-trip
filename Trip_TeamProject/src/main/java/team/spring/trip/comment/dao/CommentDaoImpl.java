@@ -37,7 +37,7 @@ public class CommentDaoImpl implements CommentDao {
 
 	//댓삭제
 	@Override
-	public int deleteComment(Comment comment) {
+	public int deleteComment(Comment comment) throws Exception {
 		log.debug("댓삭제 dao");
 		return session.update("comment.deleteComment", comment);
 	}
