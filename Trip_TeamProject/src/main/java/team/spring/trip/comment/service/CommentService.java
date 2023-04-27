@@ -16,7 +16,7 @@ public interface CommentService {
 	int editComment(Comment comment);
 	
 	//댓삭제
-	int deleteCommentSv(Comment comment);
+	List<Comment> deleteCommentSv(Comment comment);
 	
 	//댓리스트
 	List<Comment> allComment();

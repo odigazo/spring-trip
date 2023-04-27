@@ -25,7 +25,7 @@
 		<typeAlias type="team.spring.trip.user.vo.User" alias="User"/>
 		<typeAlias type="team.spring.trip.comment.vo.Comment" alias="Comment"/>
 		<typeAlias type="team.spring.trip.like.vo.Like" alias="Like"/>
-	 	
+	 	<typeAlias type="team.spring.trip.courseBoard.vo.CourseBoard" alias="CourseBoard"/>
 
 	 </typeAliases>
 

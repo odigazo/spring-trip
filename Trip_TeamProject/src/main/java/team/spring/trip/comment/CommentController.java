@@ -54,10 +54,10 @@ public class CommentController {
 	
 	//댓글삭제
 	@PutMapping(value = "/deleteComment")
-	public int deleteComment(@ModelAttribute Comment comment) {
+	public List<Comment> deleteComment(@ModelAttribute Comment comment) {
 		log.debug("댓글 삭제ct");
-		log.debug(comment.getUserNum());
-		int result = commentService.deleteCommentSv(comment);
+		log.debug("삭제되어야해요 값이?={}",comment);
+		List<Comment> result = commentService.deleteCommentSv(comment);
 		return result;
 	}
 	

@@ -32,7 +32,7 @@
       <property name="mapperLocations">
          <list>
 			<value>classpath:mappers/TripMainMapper.xml</value>
-            
+            <value>classpath:mappers/CourseBoardMapper.xml</value>
             <value>classpath:mappers/CommentMapper.xml</value>
             <value>classpath:mappers/LikeMapper.xml</value>
             <value>classpath:mappers/UserMapper.xml</value>

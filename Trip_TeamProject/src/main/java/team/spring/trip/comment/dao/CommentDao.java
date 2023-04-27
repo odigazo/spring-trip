@@ -11,7 +11,7 @@ public interface CommentDao {
 
 	int updateCommentDao(Comment comment);
 	
-	int deleteComment(Comment comment);
+	int deleteComment(Comment comment) throws Exception;
 
 	List<Comment> getAllComment();
 }
