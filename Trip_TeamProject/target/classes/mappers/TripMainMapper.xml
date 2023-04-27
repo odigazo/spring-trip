@@ -5,7 +5,7 @@
  <mapper namespace="tripMain">
  
   <select id="searchAllPlaces" resultType="TripPlaceInfo">
- 	SELECT placeName, thumnailUrl from tripPlace
+ 	SELECT placeName, thumnailUrl FROM tripPlace
  	ORDER BY placeName
  </select>
  
@@ -17,13 +17,21 @@
  </select>
 
  <select id="searchKeyword" parameterType="String" resultType="TripPlaceInfo">
- 	SELECT placeName, thumnailUrl from tripPlace
- 	WHERE placeAddress LIKE CONCAT('%',#{keyword},'%') 
+ 	SELECT placeName, thumnailUrl FROM tripPlace
+ 	WHERE placeAddress LIKE CONCAT('%',#{keyword},'%') or
+ 	localAddress LIKE CONCAT('%',#{keyword},'%')
  	ORDER BY placeName DESC
  </select>
  
  <select id="searchCategory" parameterType="String" resultType="TripPlaceInfo">
-  	SELECT placeName, thumnailUrl from tripPlace
+  	SELECT placeName, thumnailUrl FROM tripPlace
+  	WHERE ${season} = 'Y'
+ 	ORDER BY placeName
+ </select>
+ 
+ <select id="selectSeasonPlace" parameterType="String" resultType="SeasonPlaceInfo">
+ 	SELECT placeName, longitude, latitude, thumnailUrl
+ 	FROM tripPlace
   	WHERE ${season} = 'Y'
  	ORDER BY placeName
  </select>
