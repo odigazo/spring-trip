@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import team.spring.trip.tripMain.vo.SeasonPlaceInfo;
 import team.spring.trip.tripMain.vo.TripPlaceDetail;
 import team.spring.trip.tripMain.vo.TripPlaceInfo;
 
@@ -47,6 +48,14 @@ public class TripMainDaoImpl implements TripMainDao{
 	public List<TripPlaceInfo> searchCategory(String season) {
 		
 		List<TripPlaceInfo> list = session.selectList("tripMain.searchCategory", season);	
+		
+		return list;
+	}
+
+	@Override
+	public List<SeasonPlaceInfo> selectSeasonPlace(String season) {
+		
+		List<SeasonPlaceInfo> list = session.selectList("tripMain.selectSeasonPlace", season);
 		
 		return list;
 	}

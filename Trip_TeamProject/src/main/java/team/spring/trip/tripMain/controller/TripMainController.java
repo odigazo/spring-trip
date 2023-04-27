@@ -1,11 +1,14 @@
 package team.spring.trip.tripMain.controller;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -13,6 +16,7 @@ import com.google.gson.Gson;
 
 import team.spring.trip.tripMain.service.TripMainService;
 import team.spring.trip.tripMain.vo.TripPlaceDetail;
+import team.spring.trip.tripMain.vo.TripPlaceDistance;
 import team.spring.trip.tripMain.vo.TripPlaceInfo;
 
 @RestController
@@ -31,8 +35,6 @@ public class TripMainController {
 		
 		List<TripPlaceInfo> list = service.searchAllPlaces();
 		
-		System.out.println(list.toString());
-		
 		String places = gson.toJson(list);
 		
 		return places;
@@ -44,8 +46,6 @@ public class TripMainController {
 		TripPlaceDetail detail = service.searchDetail(placeName);
 		
 		String tripDetail = gson.toJson(detail);
-		
-		System.out.println(tripDetail);
 		
 		return tripDetail;
 	}
@@ -67,7 +67,15 @@ public class TripMainController {
 		
 		String places = gson.toJson(list);
 		
-		System.out.println(places);
+		return places;
+	}
+	
+	@PostMapping(value="recommend")
+	public String recommendPlace(@RequestBody HashMap<String, Double> map) {
+		
+		List<TripPlaceDistance> list = service.recommendPlace(map.get("longitude"), map.get("latitude"));
+		
+		String places = gson.toJson(list);
 		
 		return places;
 	}

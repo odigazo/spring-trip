@@ -22,6 +22,7 @@
 	 	 
 		<typeAlias type="team.spring.trip.tripMain.vo.TripPlaceInfo" alias="TripPlaceInfo"/>
 		<typeAlias type="team.spring.trip.tripMain.vo.TripPlaceDetail" alias="TripPlaceDetail"/>
+		<typeAlias type="team.spring.trip.tripMain.vo.SeasonPlaceInfo" alias="SeasonPlaceInfo"/>
 		<typeAlias type="team.spring.trip.user.vo.User" alias="User"/>
 		<typeAlias type="team.spring.trip.comment.vo.Comment" alias="Comment"/>
 		<typeAlias type="team.spring.trip.like.vo.Like" alias="Like"/>
