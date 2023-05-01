@@ -24,6 +24,13 @@ public class CourseBoardDaoImpl implements CourseBoardDao {
 		log.debug("코스 목록 dao");
 		return session.selectList("courseBoard.courseBoardList");
 	}
+
+	@Override
+	public int insertCourse(CourseBoard courseBoard) {
+		int test = courseBoard.getUserNum();
+		System.out.println(test);
+		return session.insert("courseBoard.insertCourse",courseBoard);
+	}
 	
 	
 }

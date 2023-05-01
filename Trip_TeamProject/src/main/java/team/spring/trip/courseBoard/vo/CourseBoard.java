@@ -13,7 +13,7 @@ public class CourseBoard {
 
 	private int courseNum;
 	private int userNum;
-	private String placeName;
+//	private String placeName;
 	private String courseTitle;
 	private String courseContents;
 	private String courseLike;

@@ -8,4 +8,6 @@ public interface CourseBoardService {
 
 	List<CourseBoard> courseList(CourseBoard courseBoard);
 
+	int insertCourse(CourseBoard courseBoard);
+
 }

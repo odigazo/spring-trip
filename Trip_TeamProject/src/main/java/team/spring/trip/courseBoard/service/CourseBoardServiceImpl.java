@@ -26,6 +26,12 @@ public class CourseBoardServiceImpl implements CourseBoardService {
 		log.debug("코스 목록service");
 		return courseBoardDao.courseList(courseBoard);
 	}
+
+	@Override
+	public int insertCourse(CourseBoard courseBoard) {
+		
+		return courseBoardDao.insertCourse(courseBoard);
+	}
 	
 
 	

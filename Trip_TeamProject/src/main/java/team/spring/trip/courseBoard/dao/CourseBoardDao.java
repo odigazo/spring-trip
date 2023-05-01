@@ -8,4 +8,6 @@ public interface CourseBoardDao {
 
 	List<CourseBoard> courseList(CourseBoard courseBoard);
 
+	int insertCourse(CourseBoard courseBoard);
+
 }

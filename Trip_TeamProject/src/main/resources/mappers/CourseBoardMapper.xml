@@ -12,6 +12,10 @@
 		FROM courseBoard 
         WHERE travelStatus = 'Y'
     </select>
+    
+    <insert id="insertCourse" parameterType="courseBoard">
+        INSERT INTO courseBoard(userNum,courseTitle,courseContents) VALUES(#{userNum},#{courseTitle},#{courseContents})
+    </insert>
 	
 	
 </mapper>
