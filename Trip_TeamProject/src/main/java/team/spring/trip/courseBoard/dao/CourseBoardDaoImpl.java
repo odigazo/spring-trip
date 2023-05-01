@@ -21,7 +21,7 @@ public class CourseBoardDaoImpl implements CourseBoardDao {
 	//코스 목록
 	@Override
 	public List<CourseBoard> courseList(CourseBoard courseBoard) {
-	
+		log.debug("코스 목록 dao");
 		return session.selectList("courseBoard.courseBoardList");
 	}
 	

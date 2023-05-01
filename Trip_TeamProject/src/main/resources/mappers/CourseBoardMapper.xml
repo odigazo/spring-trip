@@ -8,7 +8,7 @@
 
 	<!-- 글목록 불러오기 -->
 	<select id="courseBoardList" resultType="courseBoard">
-        SELECT courseNum, courseTitle, courseContents, courseLike, createDate
+        SELECT courseNum, courseTitle, courseContents, courseLike
 		FROM courseBoard 
         WHERE travelStatus = 'Y'
     </select>

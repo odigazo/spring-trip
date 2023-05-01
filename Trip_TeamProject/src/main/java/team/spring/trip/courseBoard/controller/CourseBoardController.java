@@ -26,10 +26,12 @@ public class CourseBoardController {
 	//코스 목록
 	@GetMapping(value = "/courseList")
 	public List<CourseBoard> courseList(@ModelAttribute CourseBoard courseBoard){
+		log.debug("testtest"+courseBoard.getCourseNum());
+	    courseBoard.setCourseNum(1); //임시
 		log.debug("코스 목록 ct");
 		log.debug("코스 목록="+courseBoard);
 		List<CourseBoard> list = courseBoardService.courseList(courseBoard);
-		
+		log.debug(list);
 		return list;
 	}
 }
