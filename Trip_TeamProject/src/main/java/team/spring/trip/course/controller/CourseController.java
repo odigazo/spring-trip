@@ -73,11 +73,24 @@ public class CourseController {
 		for (int i = 0; i < list.size(); i++) {
 		    String[] parts = list.get(i).split(" : ");
 		    System.out.println(parts[0]);
-		    System.out.println(parts[1]);
 		    names[i] = parts[0];
-		    String[] latLong = parts[1].split(",");
-		    latitudes[i] = Double.parseDouble(latLong[0])+(0.01*i);
-		    longitudes[i] = Double.parseDouble(latLong[1])+(0.01*i);
+		    if(parts.length>=1) {
+			    System.out.println(parts[1]);
+			    
+			    String[] latLong = parts[1].split(",");
+			    if(latLong[1].startsWith(" ")) {
+		    		latLong[1] = latLong[1].substring(1);
+		    	}
+			    for(int j=0;j<latLong[1].length();j++){
+			    	
+			    	if(latLong[1].charAt(j)!='.'&&(latLong[1].charAt(j)<'0'||latLong[1].charAt(j)>'9')) {
+			    		latLong[1]=latLong[1].substring(0,j);
+			    		break;
+			    	}
+			    }
+			    latitudes[i] = Double.parseDouble(latLong[0])+(0.01*i);
+			    longitudes[i] = Double.parseDouble(latLong[1])+(0.01*i);
+		    }
 		}
 		
 		map.put("names",names);

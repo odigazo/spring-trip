@@ -14,7 +14,7 @@
     </select>
     
     <insert id="insertCourse" parameterType="courseBoard">
-        INSERT INTO courseBoard(userNum,courseTitle,courseContents) VALUES(#{userNum},#{courseTitle},#{courseContents})
+        INSERT INTO courseBoard(userNum,courseTitle,courseContents,travelStatus) VALUES(#{userNum},#{courseTitle},#{courseContents},'Y')
     </insert>
 	
 	
