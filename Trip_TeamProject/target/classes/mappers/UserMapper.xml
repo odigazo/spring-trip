@@ -28,12 +28,14 @@
    
    
    <update id="deleteUser" parameterType="HashMap">
-   	  update user set isOut='Y',outDate=#{outDate},userMBTI=NULL,userCharacter=1,
-   	  userI=0,userE=0,userS=0,userN=0,userT=0,userF=0,userP=0,userJ=0,
-   	  userWin=0,userDefeat=0,userPoint=0
+   	  update user set isOut='Y',outDate=#{outDate}
    	  where userEmail=#{userEmail}
    </update>
    
+   <update id="updateUser" parameterType="User">
+      update user set userNickname=#{userNickname},userAddr=#{userAddr},userAge=#{userAge}
+      where userEmail=#{userEmail}
+   </update>
    
    
    

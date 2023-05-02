@@ -20,6 +20,8 @@ public interface UserDao {
 
 	User nicknameCheck(String userNickname);
 
+	int updateUser(User user);
+
 	
 	
 }

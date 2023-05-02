@@ -86,6 +86,12 @@ public class UserDaoImpl implements UserDao {
 		return user;
 	}
 
+	@Override
+	public int updateUser(User user) {
+		
+		return session.update("myUser.updateUser",user);
+	}
+
 	
 	
 	

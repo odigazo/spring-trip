@@ -72,5 +72,15 @@ public class SignUpService {
 		return user;
 	}
 
+	public int updateinfo(User user) {
+		
+		return dao.updateUser(user);
+	}
+
+	public int deleteUser(User user) {
+		
+		return dao.deleteUser(user.getUserEmail());
+	}
+
 	
 }

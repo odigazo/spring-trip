@@ -19,17 +19,13 @@ public class LoginService {
 	Logger log = LogManager.getLogger("case3");
 
 
-	public boolean checkEmail(String userEmail) {
+	public User checkEmail(String userEmail) {
 		
 		boolean canRegister = false;
 		
 		User user = dao.emailCheck(userEmail);
 		
-		if(user==null) {
-			canRegister=true;
-		}
-		
-		return canRegister;
+		return user;
 	}
 
 	
