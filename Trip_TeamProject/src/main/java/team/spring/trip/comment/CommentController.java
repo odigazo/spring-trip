@@ -5,12 +5,15 @@ import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import team.spring.trip.comment.service.CommentService;
@@ -30,9 +33,9 @@ public class CommentController {
 	public List<Comment> insertComment(@ModelAttribute Comment comment) {
 		log.debug("쓰기 controller");
 		log.debug(comment.getUserNum());
-		comment.setCourseNum(1);
+		//comment.setCourseNum(1);
 		int result = commentService.createComment(comment);
-		List<Comment> list = commentService.allComment();
+		List<Comment> list = commentService.allComment(comment);
 		return list;
 	}
 
@@ -45,7 +48,7 @@ public class CommentController {
 		log.debug(comment.getCommentNum());
 		int result = commentService.editComment(comment);
 		if(result==1) {
-			List<Comment> list = commentService.allComment();
+			List<Comment> list = commentService.allComment(comment);
 			return list;
 		}
 		return null;
@@ -62,10 +65,15 @@ public class CommentController {
 	}
 	
 	//댓글리스트
-	@GetMapping(value = "/commentList")
-	public List<Comment> commentList() {
-		List<Comment> list = commentService.allComment();
-		return list;
+	@GetMapping(value = "/commentList/{courseNum}")
+	public ResponseEntity<List<Comment>> commentList(@RequestParam int courseNum, Model model) {
+		log.debug("댓글 리스트 컨트롤러");
+		Comment comment = new Comment();
+		log.debug(courseNum);
+		comment.setCourseNum(courseNum);
+		log.debug(comment);
+		List<Comment> list = commentService.allComment(comment);
+		return ResponseEntity.ok(list);
 	}
 	
 	

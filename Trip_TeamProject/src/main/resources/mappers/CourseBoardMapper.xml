@@ -8,7 +8,7 @@
 
 	<!-- 글목록 불러오기 -->
 	<select id="courseBoardList" resultType="courseBoard">
-        SELECT courseNum, courseTitle, courseContents, courseLike
+        SELECT *
 		FROM courseBoard 
         WHERE travelStatus = 'Y'
     </select>
@@ -17,5 +17,21 @@
         INSERT INTO courseBoard(userNum,courseTitle,courseContents) VALUES(#{userNum},#{courseTitle},#{courseContents})
     </insert>
 	
+	<!-- 좋아요 증가 -->
+	<insert id="plusLike" parameterType="int">
+        UPDATE courseBoard SET courseLike=courseLike+1 WHERE courseNum=#{courseNum}
+    </insert>
+	
+	<!-- 좋아요 감소 -->
+	<insert id="deleteLike" parameterType="int">
+        UPDATE courseBoard SET courseLike=courseLike-1 WHERE courseNum=#{courseNum}
+    </insert>
+	
+	<!-- 글 조회 -->
+	<select id="selectCourse" resultType="courseBoard">
+        SELECT courseNum, courseTitle, courseContents, courseLike
+		FROM courseBoard 
+        WHERE courseTitle = #{courseTitle}
+    </select>
 	
 </mapper>

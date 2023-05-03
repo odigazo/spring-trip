@@ -29,12 +29,12 @@ public class CourseBoardController {
 	
 	//코스 목록
 	@GetMapping(value = "/courseList")
-	public List<CourseBoard> courseList(@ModelAttribute CourseBoard courseBoard){
-		log.debug("testtest"+courseBoard.getCourseNum());
-	    courseBoard.setCourseNum(1); //임시
-		log.debug("코스 목록 ct");
-		log.debug("코스 목록="+courseBoard);
-		List<CourseBoard> list = courseBoardService.courseList(courseBoard);
+	public List<CourseBoard> courseList(){
+//		log.debug("testtest"+courseBoard.getCourseNum());
+//	    courseBoard.setCourseNum(1); //임시
+//		log.debug("코스 목록 ct");
+//		log.debug("코스 목록="+courseBoard);
+		List<CourseBoard> list = courseBoardService.courseList();
 		log.debug(list);
 		return list;
 	}
@@ -60,6 +60,16 @@ public class CourseBoardController {
 		
 		int result = courseBoardService.insertCourse(courseboard);
 		log.debug(result);
+		return result;
+	}
+	
+	//코스 조회
+	@GetMapping(value = "/selectCourse")
+	public int selectCourse(@ModelAttribute CourseBoard courseBoard) {
+		log.debug("코스 조회 ct");
+		log.debug("코스 조회="+courseBoard);
+		
+		int result = courseBoardService.selectCourse(courseBoard);
 		return result;
 	}
 }

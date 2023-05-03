@@ -49,7 +49,7 @@ public class CommentServiceImpl implements CommentService {
 		try {
 			result = commentDao.deleteComment(comment);
 			if (result == 1) {
-				list = commentDao.getAllComment();
+				list = commentDao.getAllComment(comment);
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -61,9 +61,9 @@ public class CommentServiceImpl implements CommentService {
 
 	//댓글리스트
 	@Override
-	public List<Comment> allComment() {
-		// TODO Auto-generated method stub
-		return commentDao.getAllComment();
+	public List<Comment> allComment(Comment comment) {
+		log.debug("댓글 리스트 service");
+		return commentDao.getAllComment(comment);
 	}
 	
 

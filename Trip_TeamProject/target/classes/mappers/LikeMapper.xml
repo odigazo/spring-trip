@@ -6,14 +6,30 @@
 
 <mapper namespace="Like">
 
-	<insert id="addLike" parameterType="int">
+	<!-- 좋아요 -->
+	<insert id="addLike" parameterType="Like">
 		INSERT INTO CourseLike (courseNum, userNum)
 		VALUES (#{courseNum}, #{userNum})
 	</insert>
+	
+	<!-- 좋아요 카운트+1 -->
+	<select id="getLikeCount" parameterType="Like" resultType="int">
+  	  SELECT COUNT(*) 
+  	  FROM courseLike 
+  	  WHERE courseNum = #{courseNum}
+	</select>
+	
+	<!-- 조아요 한번더 쳌 -->
+	<select id="check" parameterType="Like" resultType="int">
+      SELECT COUNT(*)
+  	  FROM courseLike
+  	  WHERE courseNum = #{courseNum} AND userNum = #{userNum}
+	</select>
 
-	<delete id="removeLike" parameterType="int">
+	<!-- 좋아요 취소 -->
+	<delete id="removeLike" parameterType="Like">
 		DELETE FROM CourseLike
-		WHERE userNum = #{userNum}
+		WHERE userNum = #{userNum} AND courseNum = #{courseNum}
 	</delete>
 
 </mapper>

@@ -6,8 +6,14 @@ import team.spring.trip.courseBoard.vo.CourseBoard;
 
 public interface CourseBoardDao {
 
-	List<CourseBoard> courseList(CourseBoard courseBoard);
+	List<CourseBoard> courseList();
 
 	int insertCourse(CourseBoard courseBoard);
+
+	int selectCourse(CourseBoard courseBoard);
+
+	int plusLike(int courseNum);
+
+	int deleteLike(int courseNum);
 
 }

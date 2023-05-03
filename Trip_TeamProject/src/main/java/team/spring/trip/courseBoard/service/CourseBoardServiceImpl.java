@@ -22,9 +22,9 @@ public class CourseBoardServiceImpl implements CourseBoardService {
 
 	//코스 목록
 	@Override
-	public List<CourseBoard> courseList(CourseBoard courseBoard) {
-		log.debug("코스 목록service");
-		return courseBoardDao.courseList(courseBoard);
+	public List<CourseBoard> courseList() {
+
+		return courseBoardDao.courseList();
 	}
 
 	@Override
@@ -32,7 +32,32 @@ public class CourseBoardServiceImpl implements CourseBoardService {
 		
 		return courseBoardDao.insertCourse(courseBoard);
 	}
+
+	//코스 조회
+	@Override
+	public int selectCourse(CourseBoard courseBoard) {
+		log.debug("코스 조회service");
+		return courseBoardDao.selectCourse(courseBoard);
+	}
+
+	//좋아요
+	@Override
+	public int plusLike(int courseNum) {
+		
+		return courseBoardDao.plusLike(courseNum);
+	}
+
+	//좋아요 취소
+	@Override
+	public int deleteLike(int courseNum) {
+		// TODO Auto-generated method stub
+		return courseBoardDao.deleteLike(courseNum);
+	}
 	
 
+	
+
+
+	
 	
 }
