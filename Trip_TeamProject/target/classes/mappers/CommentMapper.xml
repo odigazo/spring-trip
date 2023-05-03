@@ -27,10 +27,10 @@
 	</update>
 	
 	<!-- 댓글리스트 -->
-	<select id="commentList" resultType="Comment">
+	<select id="commentList" parameterType="Comment" resultType="Comment">
 		SELECT *
   		FROM commentLog
-  		WHERE isDelete != 'Y'
+  		WHERE isDelete != 'Y' AND courseNum=#{courseNum}
 	</select>
 	
 	

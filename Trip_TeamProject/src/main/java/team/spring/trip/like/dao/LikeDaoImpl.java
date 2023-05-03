@@ -20,15 +20,37 @@ public class LikeDaoImpl implements LikeDao {
 	@Override
 	public int addLike(Like like) {
 		log.debug("좋아요 dao");
-		return session.insert("like.addLike", like);
+		int test = like.getUserNum();
+		int test2 = like.getCourseNum();
+		System.out.println(test+"+"+test2);
+		return session.insert("Like.addLike", like);
 	}
 
+	//조아요 카운트
+	@Override
+	public int getLikeCount(Like like) {
+		// TODO Auto-generated method stub
+		return session.selectOne("Like.getLikeCount", like);
+	}
+	
 	//조아요취소
 	@Override
 	public int removeLike(Like like) {
 		log.debug("좋아요 취소dao");
-		return session.delete("like.removeLike", like);
+		log.debug("좋아요취소"+ like);
+		return session.delete("Like.removeLike", like);
 	}
+
+	// 조아요 췤
+	@Override
+	public boolean check(Like like) {
+		log.debug("좋아요 췤dao");
+		
+		 Integer likeCount = session.selectOne("Like.check", like);
+		 return likeCount != null && likeCount > 0;
+	}
+
+	
 	
 	
 }

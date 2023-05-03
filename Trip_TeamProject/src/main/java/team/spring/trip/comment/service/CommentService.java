@@ -19,5 +19,5 @@ public interface CommentService {
 	List<Comment> deleteCommentSv(Comment comment);
 	
 	//댓리스트
-	List<Comment> allComment();
+	List<Comment> allComment(Comment comment);
 }

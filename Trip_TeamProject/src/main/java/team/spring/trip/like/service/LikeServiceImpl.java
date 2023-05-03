@@ -24,7 +24,13 @@ public class LikeServiceImpl implements LikeService {
 
 		return result;
 	}
-
+	
+	//조아요 카운트
+	@Override
+	public int getLikeCount(Like like) {
+		// TODO Auto-generated method stub
+		return likeDao.getLikeCount(like);
+	}
 	//조아요취소
 	@Override
 	public int removeLike(Like like) {
@@ -32,5 +38,15 @@ public class LikeServiceImpl implements LikeService {
 		int result = likeDao.removeLike(like);
 		return result;
 	}
+
+	//조아요 쳌
+	@Override
+	public boolean check(Like like) {
+		log.debug("좋아요 췤 sv");
+		return likeDao.check(like);
+	}
+
+	
+
 	
 }

@@ -20,7 +20,7 @@ public class CourseBoardDaoImpl implements CourseBoardDao {
 
 	//코스 목록
 	@Override
-	public List<CourseBoard> courseList(CourseBoard courseBoard) {
+	public List<CourseBoard> courseList() {
 		log.debug("코스 목록 dao");
 		return session.selectList("courseBoard.courseBoardList");
 	}
@@ -30,6 +30,25 @@ public class CourseBoardDaoImpl implements CourseBoardDao {
 		int test = courseBoard.getUserNum();
 		System.out.println(test);
 		return session.insert("courseBoard.insertCourse",courseBoard);
+	}
+
+	@Override
+	public int selectCourse(CourseBoard courseBoard) {
+		log.debug("코스 조회 dao");
+		
+		return session.selectOne("courseBoard.selectCourse");
+	}
+
+	@Override
+	public int plusLike(int courseNum) {
+		
+		return session.update("courseBoard.plusLike",courseNum);
+	}
+
+	@Override
+	public int deleteLike(int courseNum) {
+		// TODO Auto-generated method stub
+		return session.update("courseBoard.deleteLike",courseNum);
 	}
 	
 	

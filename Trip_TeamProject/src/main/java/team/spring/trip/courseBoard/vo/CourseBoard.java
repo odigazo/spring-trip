@@ -16,7 +16,7 @@ public class CourseBoard {
 //	private String placeName;
 	private String courseTitle;
 	private String courseContents;
-	private String courseLike;
+	private int courseLike;
 	private Date createDate;
 	private String travelStatus;
 	private String purpose;
