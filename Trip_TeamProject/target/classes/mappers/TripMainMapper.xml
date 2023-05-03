@@ -36,4 +36,46 @@
  	ORDER BY placeName
  </select>
  
+ <select id="recommendPlace" parameterType="RecommendInput" resultType="TripPlaceDetail">
+ 	SELECT placeName, placeAddress, latitude, 
+ 	longitude, placeContents, imageUrl
+ 	FROM tripPlace
+ 	WHERE ${season} = 'Y' 
+ 	AND placeContents LIKE CONCAT('%',#{keyword1},'%')
+ 	OR placeContents LIKE CONCAT('%',#{keyword2},'%')
+ 	OR placeContents LIKE CONCAT('%',#{keyword3},'%')
+ </select>
+ 
+ <insert id="insertRecommendPlace" parameterType="HashMap">
+ 	INSERT INTO recommendPlace(inputPurpose, userNum, placeName) VALUES(#{purpose}, #{userNum}, #{placeName});
+ </insert>
+ 
+ <select id="selectLikeClickUser" parameterType="int" resultType="int">
+ 	SELECT userNum FROM courseLike
+	WHERE courseNum = (SELECT courseNum FROM courseLike
+	WHERE userNum = ${userNum} 
+	ORDER BY clickDate
+	LIMIT 0, 1);
+ </select>
+ 
+ <select id="otherRecommendPlace" parameterType="int" resultType="TripPlaceInfo">
+	SELECT B.placeName, B.thumnailUrl
+	FROM courseBoard A
+	INNER JOIN
+	tripPlace B
+	ON A.courseTitle = B.placeName
+	WHERE A.userNum = ${userNum}
+	LIMIT 0, 1;
+ </select>
+ 
+ <select id="recentCourse" resultType="TripPlaceInfo">
+	SELECT B.placeName, B.thumnailUrl 
+	FROM courseBoard A
+	INNER JOIN
+	tripPlace B
+	ON A.courseTitle = B.placeName
+	ORDER BY courseLike DESC
+	LIMIT 0, 10;
+ </select>
+ 
  </mapper>

@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.Gson;
 
 import team.spring.trip.tripMain.service.TripMainService;
+import team.spring.trip.tripMain.vo.RecommendInput;
 import team.spring.trip.tripMain.vo.TripPlaceDetail;
 import team.spring.trip.tripMain.vo.TripPlaceDistance;
 import team.spring.trip.tripMain.vo.TripPlaceInfo;
@@ -70,7 +72,7 @@ public class TripMainController {
 		return places;
 	}
 	
-	@PostMapping(value="recommend")
+	@PostMapping(value="recommendDistance")
 	public String recommendPlace(@RequestBody HashMap<String, Double> map) {
 		
 		List<TripPlaceDistance> list = service.recommendPlace(map.get("longitude"), map.get("latitude"));
@@ -78,6 +80,36 @@ public class TripMainController {
 		String places = gson.toJson(list);
 		
 		return places;
+	}
+	
+	@GetMapping(value="recommendLike")
+	public String recommendLike(@RequestParam("userInfo") int userNum) {
+		
+		List<TripPlaceInfo> list = service.recommendPlaceLike(userNum);
+		
+		String places = gson.toJson(list);
+		
+		return places;
+	}
+	
+	@GetMapping(value="recentCourse")
+	public String recentCourse() {
+		
+		List<TripPlaceInfo> list = service.recentCourse();
+		
+		String places = gson.toJson(list);
+		
+		return places;
+	}
+	
+	@GetMapping(value="recommendInput")
+	public String recommendInput(RecommendInput recommendInput) {
+		
+		TripPlaceDetail detail = service.recommendCal(recommendInput);
+		
+		String tripDetail = gson.toJson(detail);
+		
+		return tripDetail;
 	}
 	
 	

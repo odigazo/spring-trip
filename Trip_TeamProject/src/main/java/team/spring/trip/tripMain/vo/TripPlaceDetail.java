@@ -15,5 +15,6 @@ public class TripPlaceDetail {
 	private double longitude;
 	private String placeContents;
 	private String imageUrl;
+	private double distance;
 	
 }

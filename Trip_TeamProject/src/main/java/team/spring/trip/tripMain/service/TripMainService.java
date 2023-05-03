@@ -1,11 +1,5 @@
 package team.spring.trip.tripMain.service;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.net.URLEncoder;
-import java.nio.charset.Charset;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,11 +15,11 @@ import org.springframework.transaction.annotation.Transactional;
 import com.google.gson.Gson;
 
 import team.spring.trip.tripMain.dao.TripMainDao;
+import team.spring.trip.tripMain.vo.RecommendInput;
 import team.spring.trip.tripMain.vo.SeasonPlaceInfo;
 import team.spring.trip.tripMain.vo.TripPlaceDetail;
 import team.spring.trip.tripMain.vo.TripPlaceDistance;
 import team.spring.trip.tripMain.vo.TripPlaceInfo;
-import team.spring.trip.user.vo.User;
 
 @Service
 public class TripMainService {
@@ -98,6 +92,8 @@ public class TripMainService {
 			resultList.add(distanceList.get(i));
 		}
 		
+		
+		
 		return resultList;
 	}
 	
@@ -126,6 +122,121 @@ public class TripMainService {
 	
 	private double rad2deg(double rad) {
 		return (rad * 180 / Math.PI);
+	}
+	
+	@Transactional
+	public TripPlaceDetail recommendCal(RecommendInput recommendInput) {
+		LocalDate date = LocalDate.parse(recommendInput.getStartDate());
+		int month = date.getMonthValue();
+		
+		String season = "";
+		if (month < 6 && month > 2) {
+			season = "spring";
+		}else if (month < 9 && month > 5) {
+			season = "summer";
+		}else if (month < 12 && month > 8) {
+			season = "autumn";
+		}else {
+			season = "winter";
+		}
+		recommendInput.setSeason(season);
+		
+		switch (recommendInput.getPurpose()) {
+			case "자연 속 여행":
+				recommendInput.setKeyword1("계곡");
+				recommendInput.setKeyword2("바다");
+				recommendInput.setKeyword3("산");
+				break;
+			case "가족 여행":
+				recommendInput.setKeyword1("테마");
+				recommendInput.setKeyword2("놀이");
+				recommendInput.setKeyword3("공원");			
+				break;
+			case "역사와 문화 여행":
+				recommendInput.setKeyword1("역사");
+				recommendInput.setKeyword2("문화");
+				recommendInput.setKeyword3("박물관");		
+				break;
+			case "축제와 이벤트 여행":
+				recommendInput.setKeyword1("축제");
+				recommendInput.setKeyword2("행사");
+				recommendInput.setKeyword3("박람회");				
+				break;
+			default:
+				break;
+		}
+		
+		List<TripPlaceDetail> list = dao.recommend(recommendInput);
+		
+		List<TripPlaceDetail> recommendList = recommendOnePlace(list, recommendInput);
+		
+		if (recommendInput.getDistance() != "상관없음") {
+			for (TripPlaceDetail place : recommendList) {
+				double distanceKiloMeter = distance(recommendInput.getLatitude(), recommendInput.getLongitude(), place.getLatitude(), place.getLongitude(), "kilometer");
+				place.setDistance(distanceKiloMeter);
+			}
+			
+			Collections.sort(recommendList, Comparator.comparingDouble(TripPlaceDetail::getDistance));
+		}
+		dao.insertRecommendLog(recommendList.get(0).getPlaceName(), recommendInput.getUserNum(), recommendInput.getPurpose());
+		
+		return recommendList.get(0);
+	}
+
+	private List<TripPlaceDetail> recommendOnePlace(List<TripPlaceDetail> list, RecommendInput recommendInput) {
+		
+		List<TripPlaceDetail> list1 = new ArrayList<>();
+		List<TripPlaceDetail> list2 = new ArrayList<>();
+		List<TripPlaceDetail> list3 = new ArrayList<>();
+		
+ 		for (TripPlaceDetail detail : list) {
+			if (detail.getPlaceContents().contains(recommendInput.getKeyword1())) {
+				if (detail.getPlaceContents().contains(recommendInput.getKeyword1())) {
+					if (detail.getPlaceContents().contains(recommendInput.getKeyword1())) {
+						list3.add(detail);
+					} else {
+						list2.add(detail);						
+					}
+				}else {
+					list1.add(detail);
+				}
+			}
+		}
+ 		
+ 		List<TripPlaceDetail> returnList = null;
+ 		
+ 		if (list3.size() == 0) {
+ 			if (list2.size() == 0) {
+ 				returnList = list1; 				
+ 			} else { 				
+ 				returnList = list2;
+ 			}
+ 		}else {
+ 			returnList = list3;
+ 		}
+		return returnList;
+	}
+
+	public List<TripPlaceInfo> recommendPlaceLike(int userNum) {
+		
+		List<Integer> numList = dao.recommendPlaceLike(userNum);
+		
+		List<TripPlaceInfo> likeRecommendList = new ArrayList<>();
+		for (Integer num : numList) {
+			TripPlaceInfo info = dao.selectOthersRecommend(num);
+			if (info != null) {
+				likeRecommendList.add(info);
+			}
+		}
+		
+		return likeRecommendList;
+	}
+
+	public List<TripPlaceInfo> recentCourse() {
+		
+		List<TripPlaceInfo> list = dao.recentCourse();
+		
+		return list;
 	}
 	
 
