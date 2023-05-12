@@ -20,6 +20,18 @@
         WHERE travelStatus = 'Y'
     </select>
     
+    <select id="myBoardList" parameterType="int" resultType="courseBoard">
+        SELECT *
+		FROM courseBoard 
+        WHERE userNum=#{userNum}
+    </select>
+    
+    <select id="myComments" parameterType="int" resultType="Comment">
+        SELECT *
+		FROM commentLog 
+        WHERE userNum=#{userNum}
+    </select>
+    
     <insert id="insertCourse" parameterType="courseBoard">
         INSERT INTO courseBoard(userNum,courseTitle,courseContents) VALUES(#{userNum},#{courseTitle},#{courseContents})
     </insert>

@@ -15,7 +15,7 @@ public class Comment {
 	private int courseNum;
 	private int userNum;
 	private String contents;
-	private Date contentsDate;
+	private String contentsDate;
 	private String isDelete;
-	private Date deleteDate;
+	private String deleteDate;
 }

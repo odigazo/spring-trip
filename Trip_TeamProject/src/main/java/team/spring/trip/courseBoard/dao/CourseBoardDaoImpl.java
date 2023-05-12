@@ -8,6 +8,7 @@ import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import team.spring.trip.comment.vo.Comment;
 import team.spring.trip.courseBoard.vo.CourseBoard;
 
 @Repository
@@ -59,6 +60,18 @@ public class CourseBoardDaoImpl implements CourseBoardDao {
 	public List<CourseBoard> likeList() {
 		log.debug("좋아요 순 dao");
 		return session.selectList("courseBoard.likeList");
+	}
+
+	@Override
+	public List<CourseBoard> myList(int userNum) {
+		// TODO Auto-generated method stub
+		return session.selectList("courseBoard.myBoardList",userNum);
+	}
+
+	@Override
+	public List<Comment> myComments(int userNum) {
+		// TODO Auto-generated method stub
+		return session.selectList("courseBoard.myComments",userNum);
 	}
 	
 	

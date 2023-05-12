@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import team.spring.trip.comment.vo.Comment;
 import team.spring.trip.courseBoard.dao.CourseBoardDao;
 import team.spring.trip.courseBoard.vo.CourseBoard;
 
@@ -59,6 +60,18 @@ public class CourseBoardServiceImpl implements CourseBoardService {
 	public List<CourseBoard> likeList() {
 		// TODO Auto-generated method stub
 		return courseBoardDao.likeList();
+	}
+
+	@Override
+	public List<CourseBoard> myList(int userNum) {
+		// TODO Auto-generated method stub
+		return courseBoardDao.myList(userNum);
+	}
+
+	@Override
+	public List<Comment> myComments(int userNum) {
+		// TODO Auto-generated method stub
+		return courseBoardDao.myComments(userNum);
 	}
 	
 

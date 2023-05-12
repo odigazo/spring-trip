@@ -1,6 +1,6 @@
 package team.spring.trip.courseBoard.vo;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,7 +17,7 @@ public class CourseBoard {
 	private String courseTitle;
 	private String courseContents;
 	private int courseLike;
-	private Date createDate;
+	private String createDate;
 	private String travelStatus;
 	private String purpose;
 	
