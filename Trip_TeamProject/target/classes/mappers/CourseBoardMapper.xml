@@ -6,6 +6,13 @@
 
 <mapper namespace="courseBoard">
 
+	<!-- 좋아요 순으로 글 불러오기 -->
+	<select id="likeList" resultType="courseBoard">
+		SELECT * FROM courseBoard
+		WHERE travelStatus = 'Y'
+		ORDER BY courseLike DESC;
+	</select>
+	
 	<!-- 글목록 불러오기 -->
 	<select id="courseBoardList" resultType="courseBoard">
         SELECT *
@@ -33,5 +40,7 @@
 		FROM courseBoard 
         WHERE courseTitle = #{courseTitle}
     </select>
+    
+   
 	
 </mapper>

@@ -53,6 +53,13 @@ public class CourseBoardServiceImpl implements CourseBoardService {
 		// TODO Auto-generated method stub
 		return courseBoardDao.deleteLike(courseNum);
 	}
+
+	//좋아요 순으로 글 목록
+	@Override
+	public List<CourseBoard> likeList() {
+		// TODO Auto-generated method stub
+		return courseBoardDao.likeList();
+	}
 	
 
 	

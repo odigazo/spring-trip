@@ -39,7 +39,16 @@ public class CourseBoardController {
 		return list;
 	}
 	
+	// 좋아요 순 게시글
+	@GetMapping(value = "/likeList")
+	public List<CourseBoard> likeList(){
+
+		List<CourseBoard> list = courseBoardService.likeList();
+		log.debug("좋아요 순으로 "+list);
+		return list;
+	}
 	
+	//글쓰기
 	@PostMapping(value = "/insertCourse")
 	public int insertCourse(@RequestBody Map<String,Object> param){
 //		log.debug(param.get("userNum"));

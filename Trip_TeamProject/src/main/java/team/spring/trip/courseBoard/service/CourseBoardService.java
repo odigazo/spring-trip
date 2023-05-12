@@ -16,4 +16,6 @@ public interface CourseBoardService {
 
 	int deleteLike(int courseNum);
 
+	List<CourseBoard> likeList();
+
 }

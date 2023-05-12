@@ -45,7 +45,7 @@ public class CommentDaoImpl implements CommentDao {
 	//댓글리스트
 	@Override
 	public List<Comment> getAllComment(Comment comment) {
-		log.debug("댓글리스트 dao");
+	//	log.debug("댓글리스트 dao");
 		return session.selectList("comment.commentList", comment);
 	}
 
