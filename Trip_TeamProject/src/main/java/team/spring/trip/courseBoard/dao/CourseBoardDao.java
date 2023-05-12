@@ -16,4 +16,6 @@ public interface CourseBoardDao {
 
 	int deleteLike(int courseNum);
 
+	List<CourseBoard> likeList();
+
 }
