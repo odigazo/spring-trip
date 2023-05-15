@@ -29,4 +29,10 @@ public interface TripMainDao {
 
 	List<TripPlaceInfo> recentCourse();
 
+	List<String> getAddr(String addr);
+
+	double getlat(String name);
+
+	double getlong(String name);
+
 }

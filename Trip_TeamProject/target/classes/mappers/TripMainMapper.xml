@@ -46,6 +46,24 @@
  	OR placeContents LIKE CONCAT('%',#{keyword3},'%')
  </select>
  
+ <select id="getAddr" parameterType="String" resultType="String">
+ 	SELECT placeName
+ 	FROM tripPlace
+ 	WHERE placeAddress LIKE CONCAT(#{addr},'%')
+ </select>
+ 
+ <select id="getLatitude" parameterType="String" resultType="Double">
+ 	SELECT latitude
+ 	FROM tripPlace
+ 	WHERE placeName = #{name}
+ </select>
+ 
+ <select id="getLongitude" parameterType="String" resultType="Double">
+ 	SELECT longitude
+ 	FROM tripPlace
+ 	WHERE placeName = #{name}
+ </select>
+ 
  <insert id="insertRecommendPlace" parameterType="HashMap">
  	INSERT INTO recommendPlace(inputPurpose, userNum, placeName) VALUES(#{purpose}, #{userNum}, #{placeName});
  </insert>
