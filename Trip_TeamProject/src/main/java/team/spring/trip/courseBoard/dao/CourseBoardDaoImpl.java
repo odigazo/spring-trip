@@ -73,6 +73,12 @@ public class CourseBoardDaoImpl implements CourseBoardDao {
 		// TODO Auto-generated method stub
 		return session.selectList("courseBoard.myComments",userNum);
 	}
+
+	@Override
+	public int updateStatus(CourseBoard courseboard) {
+		// TODO Auto-generated method stub
+		return session.update("courseBoard.updateStatus", courseboard);
+	}
 	
 	
 }

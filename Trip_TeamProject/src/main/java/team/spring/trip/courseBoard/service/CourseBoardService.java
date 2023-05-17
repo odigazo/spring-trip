@@ -23,4 +23,6 @@ public interface CourseBoardService {
 
 	List<Comment> myComments(int userNum);
 
+	int updateCourse(CourseBoard courseboard);
+
 }

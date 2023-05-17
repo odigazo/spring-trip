@@ -23,4 +23,6 @@ public interface CourseBoardDao {
 
 	List<Comment> myComments(int userNum);
 
+	int updateStatus(CourseBoard courseboard);
+
 }

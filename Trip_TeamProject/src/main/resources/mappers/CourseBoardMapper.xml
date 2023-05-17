@@ -37,14 +37,14 @@
     </insert>
 	
 	<!-- 좋아요 증가 -->
-	<insert id="plusLike" parameterType="int">
+	<update id="plusLike" parameterType="int">
         UPDATE courseBoard SET courseLike=courseLike+1 WHERE courseNum=#{courseNum}
-    </insert>
+    </update>
 	
 	<!-- 좋아요 감소 -->
-	<insert id="deleteLike" parameterType="int">
+	<update id="deleteLike" parameterType="int">
         UPDATE courseBoard SET courseLike=courseLike-1 WHERE courseNum=#{courseNum}
-    </insert>
+    </update>
 	
 	<!-- 글 조회 -->
 	<select id="selectCourse" resultType="courseBoard">
@@ -53,6 +53,9 @@
         WHERE courseTitle = #{courseTitle}
     </select>
     
-   
+    <!-- 방문 상태 변경 -->
+   <update id="updateStatus" parameterType="courseBoard">
+        UPDATE courseBoard SET travelStatus = 'Y' WHERE courseNum=#{courseNum}
+    </update>
 	
 </mapper>

@@ -29,33 +29,42 @@ public class CourseController {
 	public Map<String, Object> schedule(@RequestParam(value = "answer", required = false) String answer) {
 
 		System.out.println("원본" + answer);
-		char[] arr = answer.toCharArray();
-		for (char c : arr) {
-			System.out.print(c);
-		}
+//		char[] arr = answer.toCharArray();
+//		for (char c : arr) {
+////			System.out.print(c);
+//		}
 		while (answer.contains("\n\n")) {
 			answer = answer.replace("\n\n", "\n");
 		}
 		String[] lines = answer.split("\n");
 		List<String> list = new ArrayList<>();
 		for (String s : lines) {
-			if (s.length() > 0) {
+			if (s.length() > 10) {
 				list.add(s);
-				System.out.println(s);
+//				System.out.println(s);
 			}
 		}
 		Map<String, List<String>> tripmap = new TreeMap<>();
-		for (String s : lines) {
-			String[] tmp = s.split(" - ");
-			if (tmp.length > 1) {
-				if (tripmap.containsKey(tmp[0])) {
-					tripmap.get(tmp[0]).add(tmp[1]);
-				} else {
-					List<String> tmplist = new ArrayList<>();
-					tmplist.add(tmp[1]);
-					tripmap.put(tmp[0], tmplist);
+		String day="";
+		for (String s : list) {
+			System.out.println(s + "검사");
+			if(s.contains(" - ")) {
+				String[] tmp = s.split(" - ");
+				if (tmp.length > 1) {
+					day=tmp[0];
+					if (tripmap.containsKey(tmp[0])) {
+						tripmap.get(tmp[0]).add(tmp[1]);
+					} else {
+						List<String> tmplist = new ArrayList<>();
+						tmplist.add(tmp[1]);
+						tripmap.put(tmp[0], tmplist);
+					}
 				}
+			}else {
+				System.out.println(day + "일차 짤림");
+				tripmap.get(day).add(s);
 			}
+			
 		}
 
 		Map<String, Object> map = new HashMap<>();
@@ -69,17 +78,17 @@ public class CourseController {
 	public Map<String, Object> course(@RequestParam(value = "answer", required = false) String answer) {
 		Map<String, Object> map = new HashMap<>();
 		System.out.println(answer);
-		char[] arr = answer.toCharArray();
-		for (char c : arr) {
-			System.out.print(c);
-		}
+//		char[] arr = answer.toCharArray();
+//		for (char c : arr) {
+//			System.out.print(c);
+//		}
 		while (answer.contains("\n\n")) {
 			answer = answer.replace("\n\n", "\n");
 		}
 		String[] lines = answer.split("\n");
 		ArrayList<String> list = new ArrayList<>();
 		for (String s : lines) {
-			if (s.length() > 0) {
+			if (s.length() > 10) {
 				list.add(s);
 			}
 		}
@@ -88,34 +97,12 @@ public class CourseController {
 		double[] longitudes = new double[list.size()];
 		for (int i = 0; i < list.size(); i++) {
 			String[] parts = list.get(i).split(" : ");
-			System.out.println(parts[1]);
+			System.out.println(parts[parts.length-1]);
 			names[i] = parts[1];
 			latitudes[i] = courseservice.getlat(names[i]);
 			longitudes[i] = courseservice.getlong(names[i]);
 		}
-//		Random random = new Random();
-//		for (int i = 0; i < list.size(); i++) {
-//		    String[] parts = list.get(i).split(" : ");
-//		    System.out.println(parts[0]);
-//		    names[i] = parts[0];
-//		    if(parts.length>=1) {
-//			    System.out.println(parts[1]);
-//			    
-//			    String[] latLong = parts[1].split(",");
-//			    if(latLong[1].startsWith(" ")) {
-//		    		latLong[1] = latLong[1].substring(1);
-//		    	}
-//			    for(int j=0;j<latLong[1].length();j++){
-//			    	
-//			    	if(latLong[1].charAt(j)!='.'&&(latLong[1].charAt(j)<'0'||latLong[1].charAt(j)>'9')) {
-//			    		latLong[1]=latLong[1].substring(0,j);
-//			    		break;
-//			    	}
-//			    }
-//			    latitudes[i] = Double.parseDouble(latLong[0])+(0.001*i*(random.nextDouble()-0.5));
-//			    longitudes[i] = Double.parseDouble(latLong[1])+(0.001*i*(random.nextDouble()-0.5));
-//		    }
-//		}
+
 
 		map.put("names", names);
 		map.put("latitudes", latitudes);
@@ -133,7 +120,7 @@ public class CourseController {
 			sb.append(s);
 			sb.append(", ");
 			num++;
-			if (num == 15)
+			if (num == 12)
 				break;
 		}
 		sb.deleteCharAt(sb.length() - 1);

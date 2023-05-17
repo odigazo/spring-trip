@@ -73,6 +73,12 @@ public class CourseBoardServiceImpl implements CourseBoardService {
 		// TODO Auto-generated method stub
 		return courseBoardDao.myComments(userNum);
 	}
+
+	@Override
+	public int updateCourse(CourseBoard courseboard) {
+		// TODO Auto-generated method stub
+		return courseBoardDao.updateStatus(courseboard);
+	}
 	
 
 	
