@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.TreeMap;
 
 import org.apache.logging.log4j.LogManager;
@@ -116,13 +117,26 @@ public class CourseController {
 		List<String> list = courseservice.getAddr(addr);
 		StringBuilder sb = new StringBuilder();
 		int num = 0;
-		for (String s : list) {
-			sb.append(s);
-			sb.append(", ");
-			num++;
-			if (num == 12)
-				break;
+		boolean[] check = new boolean[list.size()];
+		int min = Math.min(12, list.size());
+		Random random = new Random();
+		for(int i=0;i<min;i++) {
+			int tmp = random.nextInt(min);
+			if(!check[tmp]) {
+				check[tmp]=true;
+				sb.append(list.get(tmp));
+				sb.append(", ");
+			}else {
+				i--;
+			}
 		}
+//		for (String s : list) {
+//			sb.append(s);
+//			sb.append(", ");
+//			num++;
+//			if (num == 12)
+//				break;
+//		}
 		sb.deleteCharAt(sb.length() - 1);
 		log.debug(sb.toString());
 		return sb.toString();
