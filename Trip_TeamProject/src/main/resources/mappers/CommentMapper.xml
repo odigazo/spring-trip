@@ -27,11 +27,24 @@
 	</update>
 	
 	<!-- 댓글리스트 -->
-	<select id="commentList" parameterType="Comment" resultType="Comment">
+	<!-- <select id="commentList" parameterType="Comment" resultType="Comment">
 		SELECT *
   		FROM commentLog
   		WHERE isDelete != 'Y' AND courseNum=#{courseNum}
-	</select>
+	</select>  -->
+	
+	<select id="commentList" resultType="Comment">
+        SELECT commentLog.commentNum,
+   			   commentLog.courseNum,
+   			   user.userNickname,
+   			   commentLog.contents,
+    		   commentLog.contentsDate,
+    		   commentLog.isDelete,
+   			   commentLog.deleteDate
+        FROM commentLog
+        JOIN user ON commentLog.userNum = user.userNum
+        WHERE isDelete != 'Y' AND courseNum=#{courseNum}
+    </select>
 	
 	
 </mapper>

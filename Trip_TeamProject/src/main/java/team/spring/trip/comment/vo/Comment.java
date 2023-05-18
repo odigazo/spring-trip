@@ -18,4 +18,5 @@ public class Comment {
 	private Date contentsDate;
 	private String isDelete;
 	private Date deleteDate;
+	private String userNickname;
 }

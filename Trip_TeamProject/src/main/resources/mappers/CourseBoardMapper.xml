@@ -41,6 +41,5 @@
         WHERE courseTitle = #{courseTitle}
     </select>
     
-   
 	
 </mapper>

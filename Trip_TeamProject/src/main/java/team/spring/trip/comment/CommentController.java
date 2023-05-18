@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import team.spring.trip.comment.service.CommentService;
 import team.spring.trip.comment.vo.Comment;
+import team.spring.trip.user.vo.User;
 
 @RestController
 @RequestMapping(value="comment",produces="application/json")
@@ -74,6 +75,7 @@ public class CommentController {
 	//	log.debug(courseNum);
 		comment.setCourseNum(courseNum);
 	//	log.debug(comment);
+//		log.debug(User.);
 		List<Comment> list = commentService.allComment(comment);
 		return ResponseEntity.ok(list);
 	}
