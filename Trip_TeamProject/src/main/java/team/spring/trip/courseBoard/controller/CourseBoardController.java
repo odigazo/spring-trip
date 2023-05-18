@@ -128,4 +128,28 @@ public class CourseBoardController {
 		int result = courseBoardService.selectCourse(courseBoard);
 		return result;
 	}
+	
+	// 코스 줄바꿈
+//	@GetMapping(value="/schedule")
+//	public List<String> schedule(@RequestParam(value="answer", required=false) String answer){
+//		
+////		System.out.println(answer);
+//		char[] arr = answer.toCharArray();
+//		for(char c : arr) {
+////			System.out.print(c);
+//		}
+//		while(answer.contains("\n\n")) {
+//			answer = answer.replace("\n\n", "\n");
+//		}
+//		String[] lines = answer.split("\n");
+//		List<String> list = new ArrayList<>();
+//		for(String s : lines) {
+//			if(s.length()>0) {
+//				list.add(s);
+//				System.out.println(s);
+//			}
+//		}
+//		
+//		return list;
+//	}
 }

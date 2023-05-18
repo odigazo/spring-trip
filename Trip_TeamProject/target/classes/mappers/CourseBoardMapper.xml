@@ -53,9 +53,11 @@
         WHERE courseTitle = #{courseTitle}
     </select>
     
+
     <!-- 방문 상태 변경 -->
    <update id="updateStatus" parameterType="courseBoard">
         UPDATE courseBoard SET travelStatus = 'Y' WHERE courseNum=#{courseNum}
     </update>
+
 	
 </mapper>
