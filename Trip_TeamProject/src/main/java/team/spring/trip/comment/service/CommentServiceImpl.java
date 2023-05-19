@@ -62,7 +62,7 @@ public class CommentServiceImpl implements CommentService {
 	//댓글리스트
 	@Override
 	public List<Comment> allComment(Comment comment) {
-		log.debug("댓글 리스트 service");
+	//	log.debug("댓글 리스트 service");
 		return commentDao.getAllComment(comment);
 	}
 	

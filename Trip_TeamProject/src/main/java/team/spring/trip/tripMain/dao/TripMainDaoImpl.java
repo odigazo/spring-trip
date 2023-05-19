@@ -105,6 +105,24 @@ public class TripMainDaoImpl implements TripMainDao{
 		
 		return list;
 	}
+
+	@Override
+	public List<String> getAddr(String addr) {
+		List<String> list = session.selectList("tripMain.getAddr",addr);
+		return list;
+	}
+
+	@Override
+	public double getlat(String name) {
+		// TODO Auto-generated method stub
+		return session.selectOne("tripMain.getLatitude", name);
+	}
+
+	@Override
+	public double getlong(String name) {
+		// TODO Auto-generated method stub
+		return session.selectOne("tripMain.getLongitude", name);
+	}
 	
 	
 }
