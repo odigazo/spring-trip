@@ -106,7 +106,6 @@ public class TripMainController {
 	public String recommendInput(RecommendInput recommendInput) {
 		
 		TripPlaceDetail detail = service.recommendCal(recommendInput);
-		
 		String tripDetail = gson.toJson(detail);
 		
 		return tripDetail;
