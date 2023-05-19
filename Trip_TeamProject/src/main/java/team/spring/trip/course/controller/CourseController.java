@@ -30,19 +30,16 @@ public class CourseController {
 	public Map<String, Object> schedule(@RequestParam(value = "answer", required = false) String answer) {
 
 		System.out.println("원본" + answer);
-//		char[] arr = answer.toCharArray();
-//		for (char c : arr) {
-////			System.out.print(c);
-//		}
+
 		while (answer.contains("\n\n")) {
 			answer = answer.replace("\n\n", "\n");
 		}
 		String[] lines = answer.split("\n");
 		List<String> list = new ArrayList<>();
 		for (String s : lines) {
-			if (s.length() > 10) {
+			if (s.length() > 2) {
 				list.add(s);
-//				System.out.println(s);
+				System.out.println(s);
 			}
 		}
 		Map<String, List<String>> tripmap = new TreeMap<>();
@@ -63,6 +60,9 @@ public class CourseController {
 				}
 			}else {
 				System.out.println(day + "일차 짤림");
+				List<String> tmplist = new ArrayList<>();
+				tripmap.put(s, tmplist);
+				day = s;
 				tripmap.get(day).add(s);
 			}
 			
@@ -115,6 +115,7 @@ public class CourseController {
 	public String facts(@RequestParam(value = "addr", required = false) String addr) {
 
 		List<String> list = courseservice.getAddr(addr);
+		log.debug("#######################"+addr);
 		StringBuilder sb = new StringBuilder();
 		int num = 0;
 		boolean[] check = new boolean[list.size()];
