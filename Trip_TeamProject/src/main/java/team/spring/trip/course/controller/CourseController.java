@@ -30,7 +30,7 @@ public class CourseController {
 	public Map<String, Object> schedule(@RequestParam(value = "answer", required = false) String answer) {
 
 		System.out.println("원본" + answer);
-
+		
 		while (answer.contains("\n\n")) {
 			answer = answer.replace("\n\n", "\n");
 		}
@@ -39,7 +39,7 @@ public class CourseController {
 		for (String s : lines) {
 			if (s.length() > 2) {
 				list.add(s);
-				System.out.println(s);
+//				System.out.println(s);
 			}
 		}
 		Map<String, List<String>> tripmap = new TreeMap<>();
