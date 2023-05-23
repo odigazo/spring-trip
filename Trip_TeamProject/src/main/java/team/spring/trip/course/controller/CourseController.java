@@ -46,8 +46,8 @@ public class CourseController {
 		String day="";
 		for (String s : list) {
 			System.out.println(s + "검사");
-			if(s.contains(" - ")) {
-				String[] tmp = s.split(" - ");
+			if(s.contains(" # ")) {
+				String[] tmp = s.split(" # ");
 				if (tmp.length > 1) {
 					day=tmp[0];
 					if (tripmap.containsKey(tmp[0])) {
