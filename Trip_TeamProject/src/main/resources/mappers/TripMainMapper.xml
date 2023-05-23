@@ -86,7 +86,7 @@
 	LIMIT 0, 1;
  </select>
  
- <select id="recentCourse" resultType="TripPlaceInfo">
+ <select id="mostPlace" resultType="TripPlaceInfo">
 	SELECT B.placeName, B.thumnailUrl 
 	FROM
 	(SELECT courseTitle FROM courseBoard

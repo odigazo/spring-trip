@@ -232,9 +232,9 @@ public class TripMainService {
 		return likeRecommendList;
 	}
 
-	public List<TripPlaceInfo> recentCourse() {
+	public List<TripPlaceInfo> mostPlace() {
 		
-		List<TripPlaceInfo> list = dao.recentCourse();
+		List<TripPlaceInfo> list = dao.mostPlace();
 		
 		return list;
 	}
