@@ -86,13 +86,15 @@
 	LIMIT 0, 1;
  </select>
  
- <select id="recentCourse" resultType="TripPlaceInfo">
+ <select id="mostPlace" resultType="TripPlaceInfo">
 	SELECT B.placeName, B.thumnailUrl 
-	FROM courseBoard A
+	FROM
+	(SELECT courseTitle FROM courseBoard
+	GROUP BY courseTitle
+	ORDER BY count(courseTitle) DESC) A
 	INNER JOIN
 	tripPlace B
 	ON A.courseTitle = B.placeName
-	ORDER BY courseLike DESC
 	LIMIT 0, 10;
  </select>
  

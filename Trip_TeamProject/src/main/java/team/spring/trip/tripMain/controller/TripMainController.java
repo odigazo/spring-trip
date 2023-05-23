@@ -92,10 +92,10 @@ public class TripMainController {
 		return places;
 	}
 	
-	@GetMapping(value="recentCourse")
-	public String recentCourse() {
+	@GetMapping(value="mostPlace")
+	public String mostPlace() {
 		
-		List<TripPlaceInfo> list = service.recentCourse();
+		List<TripPlaceInfo> list = service.mostPlace();
 		
 		String places = gson.toJson(list);
 		
