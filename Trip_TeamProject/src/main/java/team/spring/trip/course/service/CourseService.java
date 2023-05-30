@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import team.spring.trip.tripMain.dao.TripMainDao;
+import team.spring.trip.tripMain.vo.TripPlaceDetail;
 
 @Service
 public class CourseService {
@@ -23,12 +24,12 @@ public class CourseService {
 		return dao.getAddr(addr);
 	}
 
-	public double getlat(String name) {
+	public TripPlaceDetail getlat(String name) {
 		
 		return dao.getlat(name);
 	}
 
-	public double getlong(String name) {
+	public TripPlaceDetail getlong(String name) {
 		// TODO Auto-generated method stub
 		return dao.getlong(name);
 	}

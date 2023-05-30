@@ -52,13 +52,13 @@
  	WHERE placeAddress LIKE CONCAT(#{addr},'%')
  </select>
  
- <select id="getLatitude" parameterType="String" resultType="Double">
+ <select id="getLatitude" parameterType="String" resultType="TripPlaceDetail">
  	SELECT latitude
  	FROM tripPlace
  	WHERE placeName = #{name}
  </select>
  
- <select id="getLongitude" parameterType="String" resultType="Double">
+ <select id="getLongitude" parameterType="String" resultType="TripPlaceDetail">
  	SELECT longitude
  	FROM tripPlace
  	WHERE placeName = #{name}

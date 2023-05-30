@@ -100,8 +100,11 @@ public class CourseController {
 			String[] parts = list.get(i).split(" : ");
 			System.out.println(parts[parts.length-1]);
 			names[i] = parts[1];
-			latitudes[i] = courseservice.getlat(names[i]);
-			longitudes[i] = courseservice.getlong(names[i]);
+			if(courseservice.getlat(names[i])!=null&&courseservice.getlong(names[i])!=null) {
+				latitudes[i] = courseservice.getlat(names[i]).getLatitude();
+				longitudes[i] = courseservice.getlong(names[i]).getLongitude();
+			}
+			
 		}
 
 
@@ -121,8 +124,20 @@ public class CourseController {
 		boolean[] check = new boolean[list.size()];
 		int min = Math.min(12, list.size());
 		Random random = new Random();
+//		int count = 20; // 난수 생성 갯수
+//		int a[] = new int[count];
+//		Random r = new Random();
+//		
+//		for(int i=0; i<count; i++){
+//			a[i] = r.nextInt(99) + 1; // 1 ~ 99까지의 난수 
+//			for(int j=0; j<i; j++){
+//				if(a[i] == a[j]){
+//					i--;
+//				}
+//			}
+//		}
 		for(int i=0;i<min;i++) {
-			int tmp = random.nextInt(min);
+			int tmp = random.nextInt(list.size());
 			if(!check[tmp]) {
 				check[tmp]=true;
 				sb.append(list.get(tmp));

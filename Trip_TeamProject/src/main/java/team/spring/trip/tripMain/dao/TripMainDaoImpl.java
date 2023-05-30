@@ -113,13 +113,13 @@ public class TripMainDaoImpl implements TripMainDao{
 	}
 
 	@Override
-	public double getlat(String name) {
+	public TripPlaceDetail getlat(String name) {
 		// TODO Auto-generated method stub
 		return session.selectOne("tripMain.getLatitude", name);
 	}
 
 	@Override
-	public double getlong(String name) {
+	public TripPlaceDetail getlong(String name) {
 		// TODO Auto-generated method stub
 		return session.selectOne("tripMain.getLongitude", name);
 	}

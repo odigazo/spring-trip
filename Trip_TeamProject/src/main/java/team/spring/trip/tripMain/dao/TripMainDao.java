@@ -31,8 +31,8 @@ public interface TripMainDao {
 
 	List<String> getAddr(String addr);
 
-	double getlat(String name);
+	TripPlaceDetail getlat(String name);
 
-	double getlong(String name);
+	TripPlaceDetail getlong(String name);
 
 }
