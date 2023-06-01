@@ -98,9 +98,9 @@ public class TripMainDaoImpl implements TripMainDao{
 	}
 
 	@Override
-	public List<TripPlaceInfo> recentCourse() {
+	public List<TripPlaceInfo> mostPlace() {
 		
-		List<TripPlaceInfo> list = session.selectList("tripMain.recentCourse");
+		List<TripPlaceInfo> list = session.selectList("tripMain.mostPlace");
 		
 		
 		return list;

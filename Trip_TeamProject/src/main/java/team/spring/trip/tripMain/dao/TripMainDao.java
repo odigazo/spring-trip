@@ -27,7 +27,7 @@ public interface TripMainDao {
 
 	TripPlaceInfo selectOthersRecommend(Integer userNum);
 
-	List<TripPlaceInfo> recentCourse();
+	List<TripPlaceInfo> mostPlace();
 
 	List<String> getAddr(String addr);
 
