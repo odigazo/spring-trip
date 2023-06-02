@@ -78,23 +78,21 @@
  
  <select id="otherRecommendPlace" parameterType="int" resultType="TripPlaceInfo">
 	SELECT B.placeName, B.thumnailUrl
-	FROM courseBoard A
-	INNER JOIN
-	tripPlace B
-	ON A.courseTitle = B.placeName
-	WHERE A.userNum = ${userNum}
+	FROM courseBoard AS A,
+	tripPlace AS B
+	WHERE A.courseTitle LIKE concat('%',B.placeName,'%')
+	AND A.userNum = ${userNum}
 	LIMIT 0, 1;
  </select>
  
  <select id="mostPlace" resultType="TripPlaceInfo">
-	SELECT B.placeName, B.thumnailUrl 
+	SELECT B.placeName, B.thumnailUrl
 	FROM
 	(SELECT courseTitle FROM courseBoard
 	GROUP BY courseTitle
-	ORDER BY count(courseTitle) DESC) A
-	INNER JOIN
-	tripPlace B
-	ON A.courseTitle = B.placeName
+	ORDER BY count(courseTitle) DESC) AS A,
+	tripplace AS B
+	WHERE A.courseTitle LIKE concat('%',B.placeName,'%')
 	LIMIT 0, 10;
  </select>
  
