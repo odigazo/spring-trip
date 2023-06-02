@@ -102,7 +102,6 @@ public class TripMainDaoImpl implements TripMainDao{
 		
 		List<TripPlaceInfo> list = session.selectList("tripMain.mostPlace");
 		
-		
 		return list;
 	}
 
