@@ -76,7 +76,7 @@ public class TripMainService {
 		}else {
 			season = "winter";
 		}
-		
+		season = "spring";
 		List<SeasonPlaceInfo> list = dao.selectSeasonPlace(season);
 		List<TripPlaceDistance> distanceList = new ArrayList<TripPlaceDistance>();
 		List<TripPlaceDistance> resultList = new ArrayList<TripPlaceDistance>();
