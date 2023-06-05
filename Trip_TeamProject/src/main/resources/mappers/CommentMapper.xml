@@ -40,7 +40,8 @@
    			   commentLog.contents,
     		   commentLog.contentsDate,
     		   commentLog.isDelete,
-   			   commentLog.deleteDate
+   			   commentLog.deleteDate,
+   			   commentLog.userNum
         FROM commentLog
         JOIN user ON commentLog.userNum = user.userNum
         WHERE isDelete != 'Y' AND courseNum=#{courseNum}
