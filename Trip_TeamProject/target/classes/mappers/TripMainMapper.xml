@@ -88,11 +88,15 @@
  <select id="mostPlace" resultType="TripPlaceInfo">
 	SELECT B.placeName, B.thumnailUrl
 	FROM
-	(SELECT courseTitle FROM courseBoard
-	GROUP BY courseTitle
-	ORDER BY count(courseTitle) DESC) AS A,
+	(SELECT title, COUNT(title) AS cnt 
+	FROM
+	(SELECT TRIM(SUBSTRING_INDEX(courseTitle, ' ', 1)) AS title
+	FROM courseBoard) AS S
+	GROUP BY title) AS A
+	INNER JOIN
 	tripplace AS B
-	WHERE A.courseTitle LIKE concat('%',B.placeName,'%')
+	ON A.title = B.placeName
+	ORDER BY A.cnt DESC
 	LIMIT 0, 10;
  </select>
  
